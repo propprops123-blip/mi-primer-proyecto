@@ -9,14 +9,12 @@
         header { background-color: #fff; padding: 20px; border-bottom: 2px solid #0033ff; display: flex; justify-content: space-between; }
         .logo { font-weight: bold; font-size: 24px; color: #0033ff; }
         .container { max-width: 600px; margin: 40px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        h1 { color: #0033ff; }
+        h1 { color: #0033ff; text-align: center; }
         .btn-group { display: flex; gap: 10px; margin: 20px 0; }
         .btn { padding: 10px; border: 2px solid #0033ff; background: white; color: #0033ff; border-radius: 8px; cursor: pointer; flex: 1; font-weight: bold; }
         .btn-active { background: #0033ff; color: white; }
         
-        /* EL LETRERO QUE ME PEDISTE */
-        .info-text { text-align: center; font-weight: bold; margin-top: 30px; font-size: 20px; color: #333; }
-        .wibi { color: #0033ff; text-transform: uppercase; }
+        .instruccion { text-align: center; margin-top: 30px; color: #666; font-style: italic; }
 
         .btn-whatsapp {
             display: block;
@@ -28,7 +26,7 @@
             text-decoration: none;
             border-radius: 8px;
             font-size: 18px;
-            margin-top: 15px;
+            margin-top: 10px;
             font-weight: bold;
             box-sizing: border-box;
         }
@@ -43,18 +41,15 @@
 
 <div class="container">
     <h1>¡Bienvenido a Propprops!</h1>
-    <p>Tipo de operación:</p>
+    
     <div class="btn-group">
         <button class="btn btn-active">Venta</button>
         <button class="btn">Renta</button>
     </div>
 
-    <p class="info-text">
-        Si quieres informes de esta propiedad solo di <br> 
-        <span class="wibi">propprops wibi</span>
-    </p>
+    <p class="instruccion">Haz clic abajo para pedir informes:</p>
 
-    <a href="https://wa.me/+525559408467" class="btn-whatsapp">
+    <a href="https://wa.me/+5559408467?text=propprops%20wibi" class="btn-whatsapp">
         🚀 Contactar por WhatsApp
     </a>
 </div>
