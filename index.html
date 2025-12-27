@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Propprops - Gustavo</title>
     <style>
-        body { font-family: sans-serif; margin: 0; background-color: #f4f7f6; }
-        header { background-color: #fff; padding: 20px; border-bottom: 2px solid #0033ff; display: flex; justify-content: space-between; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #f4f7f6; }
+        header { background-color: #fff; padding: 20px; border-bottom: 2px solid #0033ff; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-weight: bold; font-size: 24px; color: #0033ff; }
-        .container { max-width: 600px; margin: 40px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        h1 { color: #0033ff; text-align: center; }
+        .container { max-width: 500px; margin: 40px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        h1 { color: #0033ff; text-align: center; margin-bottom: 5px; }
+        .sub { text-align: center; color: #666; margin-bottom: 25px; }
         .btn-group { display: flex; gap: 10px; margin: 20px 0; }
-        .btn { padding: 10px; border: 2px solid #0033ff; background: white; color: #0033ff; border-radius: 8px; cursor: pointer; flex: 1; font-weight: bold; }
+        .btn { padding: 12px; border: 2px solid #0033ff; background: white; color: #0033ff; border-radius: 8px; cursor: pointer; flex: 1; font-weight: bold; }
         .btn-active { background: #0033ff; color: white; }
         
-        .instruccion { text-align: center; margin-top: 30px; color: #666; font-style: italic; }
+        .instruccion { text-align: center; margin-top: 30px; color: #333; font-weight: bold; font-size: 18px; }
 
         .btn-whatsapp {
             display: block;
             width: 100%;
-            padding: 15px;
+            padding: 18px;
             background-color: #25d366;
             color: white;
             text-align: center;
@@ -29,29 +30,36 @@
             margin-top: 10px;
             font-weight: bold;
             box-sizing: border-box;
+            transition: 0.3s;
         }
+        .btn-whatsapp:hover { background-color: #1ebe57; transform: scale(1.02); }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo">propprops</div>
-    <nav>Propiedades | Planes</nav>
+    <nav style="color: #666; font-size: 14px;">Propiedades | Planes</nav>
 </header>
 
 <div class="container">
-    <h1>¡Bienvenido a Propprops!</h1>
+    <h1>¡Bienvenido!</h1>
+    <p class="sub">Configuración de propiedad</p>
     
     <div class="btn-group">
         <button class="btn btn-active">Venta</button>
         <button class="btn">Renta</button>
     </div>
 
-    <p class="instruccion">Haz clic abajo para pedir informes:</p>
+    <p class="instruccion">¿Quieres informes de esta propiedad?</p>
 
-    <a href="https://wa.me/+5559408467?text=propprops%20wibi" class="btn-whatsapp">
+    <a href="https://wa.me/5559408467?text=propprops%20wibi" class="btn-whatsapp">
         🚀 Contactar por WhatsApp
     </a>
+
+    <p style="text-align: center; font-size: 12px; color: #ccc; margin-top: 40px;">
+        Gustavo te amo Gemimini
+    </p>
 </div>
 
 </body>
