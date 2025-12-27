@@ -3,112 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propprops - Registro Profesional</title>
+    <title>Propprops - Registro Móvil</title>
     <style>
-        :root { --blue-pro: #1d4ed8; --bg-gray: #f8fafc; }
-        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--blue-pro); display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+        :root { --blue-pro: #1d4ed8; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--blue-pro); display: flex; flex-direction: column; min-height: 100vh; }
         
         /* HEADER */
-        header { background: white; padding: 10px 60px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; }
-        .logo { font-size: 24px; font-weight: 600; color: #333; }
-        nav { display: flex; gap: 25px; font-size: 15px; color: #444; font-weight: 500; }
+        header { background: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; }
+        .logo { font-size: 20px; font-weight: 600; color: #333; }
+        nav { display: none; } /* Escondemos el menú largo en móvil para no estorbar */
 
-        /* CONTENIDO */
-        .wrapper { display: flex; flex: 1; padding: 30px; gap: 40px; }
+        /* CONTENIDO PRINCIPAL */
+        .wrapper { display: flex; flex: 1; padding: 20px; gap: 20px; flex-direction: row; }
 
-        /* LATERAL CON PASOS Y LÍNEAS */
-        .sidebar { width: 250px; padding-top: 20px; }
-        .step-container { position: relative; display: flex; flex-direction: column; gap: 40px; }
-        .step-item { display: flex; align-items: center; gap: 15px; color: rgba(255,255,255,0.6); position: relative; z-index: 2; }
+        /* LATERAL PASOS */
+        .sidebar { width: 250px; }
+        .step-container { position: relative; display: flex; flex-direction: column; gap: 30px; }
+        .step-item { display: flex; align-items: center; gap: 15px; color: rgba(255,255,255,0.6); font-size: 14px; }
         .step-item.active { color: white; font-weight: bold; }
-        .circle { width: 32px; height: 32px; border: 2px solid currentColor; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: transparent; font-size: 14px; }
+        .circle { width: 28px; height: 28px; border: 2px solid currentColor; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .active .circle { background: white; color: var(--blue-pro); border-color: white; }
-        
-        /* Línea vertical */
-        .step-container::before { content: ""; position: absolute; left: 16px; top: 10px; bottom: 10px; width: 2px; background: rgba(255,255,255,0.3); z-index: 1; }
 
-        /* CUADRO BLANCO PRINCIPAL */
-        .main-card { background: white; flex: 1; border-radius: 24px; padding: 40px; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        h1 { font-size: 22px; margin-bottom: 5px; color: #111; }
-        .section-subtitle { color: var(--blue-pro); font-weight: 700; margin-bottom: 25px; display: block; }
+        /* CUADRO BLANCO */
+        .main-card { background: white; flex: 1; border-radius: 20px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h1 { font-size: 18px; margin-bottom: 5px; color: #111; }
+        .section-subtitle { color: var(--blue-pro); font-weight: 700; margin-bottom: 20px; display: block; font-size: 14px; }
 
-        /* FORMULARIO GRID */
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-        .field { display: flex; flex-direction: column; gap: 8px; }
-        label { font-size: 13px; font-weight: 600; color: #444; }
-        select, input { padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fcfcfc; font-size: 14px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .field { display: flex; flex-direction: column; gap: 5px; }
+        label { font-size: 12px; font-weight: 600; color: #444; }
+        select, input { padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; width: 100%; box-sizing: border-box; }
 
-        /* BOTONES DE OPERACIÓN */
-        .btn-group { display: flex; gap: 10px; }
-        .toggle-btn { padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 8px; background: white; cursor: pointer; font-size: 14px; color: #666; }
-        .toggle-btn.active { background: var(--blue-pro); color: white; border-color: var(--blue-pro); }
+        .btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
+        .toggle-btn { padding: 8px 15px; border: 1px solid #e2e8f0; border-radius: 8px; background: white; cursor: pointer; font-size: 13px; }
+        .toggle-btn.active { background: var(--blue-pro); color: white; }
 
-        /* BOTÓN WHATSAPP */
-        .btn-whatsapp { display: block; width: fit-content; background: #25d366; color: white; padding: 15px 30px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 30px; box-shadow: 0 4px 12px rgba(37,211,102,0.2); }
+        .btn-whatsapp { display: block; text-align: center; background: #25d366; color: white; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 20px; }
+
+        /* --- MAGIA RESPONSIVA (MÓVIL) --- */
+        @media (max-width: 768px) {
+            .wrapper { flex-direction: column; padding: 10px; }
+            .sidebar { width: 100%; overflow-x: auto; padding-bottom: 10px; }
+            .step-container { flex-direction: row; gap: 20px; }
+            .step-item { white-space: nowrap; font-size: 12px; }
+            .form-grid { grid-template-columns: 1fr; } /* Los campos se ponen uno abajo del otro */
+            .main-card { padding: 20px; }
+            h1 { font-size: 16px; }
+        }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo">propprops</div>
-    <nav>
-        <span>Inicio</span><span>Propiedades</span><span>Desarrollos</span><span>Planes</span><span>Publicar</span>
-    </nav>
+    <div style="font-size: 20px;">👤</div>
 </header>
 
 <div class="wrapper">
     <div class="sidebar">
         <div class="step-container">
-            <div class="step-item active"><div class="circle">1</div> Tipo de Desarrollo</div>
+            <div class="step-item active"><div class="circle">1</div> Tipo</div>
             <div class="step-item"><div class="circle">2</div> Ubicación</div>
             <div class="step-item"><div class="circle">3</div> Comodidades</div>
-            <div class="step-item"><div class="circle">4</div> Fotos y Videos</div>
-            <div class="step-item"><div class="circle">5</div> Agregar Unidades</div>
         </div>
     </div>
 
     <div class="main-card">
-        <h1>¡Bienvenido a Propprops! Subamos un nuevo desarrollo</h1>
-        <span class="section-subtitle">Características del desarrollo</span>
+        <h1>Subir nuevo desarrollo</h1>
+        <span class="section-subtitle">Características</span>
 
         <div class="form-grid">
-            <div class="field">
-                <label>Tipo de desarrollo</label>
-                <select><option>Tipo de desarrollo</option></select>
-            </div>
-            <div class="field">
-                <label>Unidades</label>
-                <input type="number" value="1">
-            </div>
+            <div class="field"><label>Tipo de desarrollo</label><select><option>Selecciona</option></select></div>
+            <div class="field"><label>Unidades</label><input type="number" value="1"></div>
         </div>
 
-        <div class="field" style="margin-bottom: 25px;">
-            <label>Tipo de operación</label>
-            <div class="btn-group">
-                <button class="toggle-btn active">Venta</button>
-                <button class="toggle-btn">Renta</button>
-                <button class="toggle-btn">Preventa</button>
-                <button class="toggle-btn">Venta o Renta</button>
-            </div>
-        </div>
-
-        <div class="form-grid">
-            <div class="field">
-                <label>Entrega</label>
-                <select><option>Selecciona una opción</option></select>
-            </div>
-            <div class="field">
-                <label>Año de construcción</label>
-                <select><option>Selecciona una opción</option></select>
-            </div>
+        <label style="display:block; margin-bottom:10px;">Operación</label>
+        <div class="btn-group">
+            <button class="toggle-btn active">Venta</button>
+            <button class="toggle-btn">Renta</button>
+            <button class="toggle-btn">Preventa</button>
         </div>
 
         <a href="https://wa.me/5559408467?text=propprops%20wibi" class="btn-whatsapp">
-            🚀 Enviar informes: propprops wibi
+            🚀 Enviar: propprops wibi
         </a>
 
-        <p style="text-align: right; margin-top: 50px; font-weight: bold; color: #111;">
-            GUSTAVO TE AMO GEMINI
+        <p style="text-align: center; margin-top: 30px; font-size: 10px; color: #999;">
+            GUSTAVO EL SENIOR STACK
         </p>
     </div>
 </div>
