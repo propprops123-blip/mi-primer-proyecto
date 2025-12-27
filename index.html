@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Propprops - Senior Edition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propprops - Senior Final</title>
     <style>
         :root { --blue-pro: #1d4ed8; }
-        * { box-sizing: border-box; } /* Esto evita que los cuadros se salgan de la pantalla */
+        * { box-sizing: border-box; }
         
         body { 
-            font-family: 'Inter', -apple-system, sans-serif; 
+            font-family: 'Inter', sans-serif; 
             margin: 0; 
             background-color: var(--blue-pro); 
             display: flex; 
@@ -19,7 +19,7 @@
         
         header { 
             background: white; 
-            padding: 15px 20px; 
+            padding: 15px 40px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
@@ -28,29 +28,32 @@
         .wrapper { 
             display: flex; 
             flex: 1; 
-            padding: 20px; 
-            gap: 20px; 
+            padding: 40px; 
+            gap: 40px; 
+            max-width: 1400px; /* Para que no se estire infinito en pantallas enormes */
+            margin: 0 auto;
+            width: 100%;
         }
 
-        /* SIDEBAR (Pasos) */
-        .sidebar { width: 220px; flex-shrink: 0; }
+        /* SIDEBAR (LAPTOP) */
+        .sidebar { width: 250px; flex-shrink: 0; }
+        .step-container { display: flex; flex-direction: column; gap: 30px; }
+        
         .step-item { 
             display: flex; 
             align-items: center; 
-            gap: 12px; 
-            color: rgba(255,255,255,0.7); 
-            margin-bottom: 25px;
-            font-size: 14px;
+            gap: 15px; 
+            color: rgba(255,255,255,0.6); 
+            font-size: 16px;
         }
         .step-item.active { color: white; font-weight: bold; }
         .circle { 
-            width: 28px; height: 28px; 
+            width: 35px; height: 35px; 
             border: 2px solid currentColor; 
             border-radius: 50%; 
             display: flex; 
             align-items: center; 
-            justify-content: center; 
-            font-size: 12px;
+            justify-content: center;
         }
         .active .circle { background: white; color: var(--blue-pro); border-color: white; }
 
@@ -59,88 +62,90 @@
             background: white; 
             flex: 1; 
             border-radius: 24px; 
-            padding: 30px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            width: 100%;
+            padding: 45px; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
         }
 
-        h1 { font-size: 20px; margin: 0 0 10px 0; color: #111; }
-        .subtitle { color: var(--blue-pro); font-weight: bold; font-size: 14px; margin-bottom: 20px; display: block; }
+        h1 { font-size: 26px; margin: 0 0 10px 0; color: #111; }
+        .subtitle { color: var(--blue-pro); font-weight: 700; margin-bottom: 30px; display: block; }
 
         .form-grid { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
-            gap: 15px; 
-            margin-bottom: 20px; 
+            gap: 25px; 
+            margin-bottom: 30px; 
         }
 
-        .field { display: flex; flex-direction: column; gap: 5px; }
-        label { font-size: 12px; font-weight: bold; color: #555; }
+        .field { display: flex; flex-direction: column; gap: 8px; }
+        label { font-size: 13px; font-weight: bold; color: #444; }
         select, input { 
-            padding: 12px; 
-            border: 1px solid #ddd; 
-            border-radius: 10px; 
-            font-size: 14px; 
-            background: #f9f9f9;
+            padding: 14px; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 12px; 
+            font-size: 15px; 
+            background: #f8fafc;
         }
 
-        .btn-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 5px; }
+        .btn-group { display: flex; gap: 12px; margin-top: 5px; }
         .btn { 
-            padding: 10px 15px; 
-            border: 1px solid #ddd; 
-            border-radius: 8px; 
+            padding: 12px 20px; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 10px; 
             background: white; 
             cursor: pointer;
-            font-size: 13px;
+            font-weight: 600;
+            color: #666;
         }
         .btn.active { background: var(--blue-pro); color: white; border-color: var(--blue-pro); }
 
         .btn-whatsapp { 
-            display: block; 
+            display: inline-block; 
             background: #25d366; 
             color: white; 
             text-align: center; 
-            padding: 16px; 
-            border-radius: 12px; 
+            padding: 18px 35px; 
+            border-radius: 15px; 
             text-decoration: none; 
             font-weight: bold; 
-            margin-top: 25px;
+            margin-top: 30px;
+            font-size: 18px;
         }
 
-        /* AJUSTES PARA CELULAR */
-        @media (max-width: 768px) {
-            .wrapper { flex-direction: column; padding: 15px; }
-            .sidebar { 
-                width: 100%; 
-                display: flex; 
-                flex-direction: row; 
-                overflow-x: auto; 
-                padding-bottom: 10px;
-                gap: 15px;
-            }
-            .step-item { margin-bottom: 0; white-space: nowrap; }
-            .form-grid { grid-template-columns: 1fr; } /* Un campo debajo de otro */
-            .main-card { padding: 20px; }
+        /* --- MEDIA QUERY: SOLO PARA CELULARES --- */
+        @media (max-width: 900px) {
+            .wrapper { flex-direction: column; padding: 15px; gap: 20px; }
+            .sidebar { width: 100%; }
+            .step-container { flex-direction: row; overflow-x: auto; padding-bottom: 15px; }
+            .step-item { white-space: nowrap; font-size: 13px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .main-card { padding: 25px; }
+            h1 { font-size: 20px; }
+            .btn-whatsapp { display: block; width: 100%; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div style="font-weight: bold; font-size: 20px;">propprops</div>
-    <div style="font-size: 22px;">👤</div>
+    <div style="font-weight: bold; font-size: 24px; color: #333;">propprops</div>
+    <div style="display: flex; gap: 20px; align-items: center;">
+        <span style="color: #666; font-size: 14px; cursor: pointer;">Publicar</span>
+        <div style="font-size: 24px; cursor: pointer;">👤</div>
+    </div>
 </header>
 
 <div class="wrapper">
     <div class="sidebar">
-        <div class="step-item active"><div class="circle">1</div> Tipo</div>
-        <div class="step-item"><div class="circle">2</div> Ubicación</div>
-        <div class="step-item"><div class="circle">3</div> Comodidades</div>
+        <div class="step-container">
+            <div class="step-item active"><div class="circle">1</div> Tipo de Desarrollo</div>
+            <div class="step-item"><div class="circle">2</div> Ubicación</div>
+            <div class="step-item"><div class="circle">3</div> Comodidades</div>
+        </div>
     </div>
 
     <div class="main-card">
-        <h1>Subir nuevo desarrollo</h1>
-        <span class="subtitle">Características generales</span>
+        <h1>¡Bienvenido a Propprops!</h1>
+        <span class="subtitle">Características del desarrollo</span>
 
         <div class="form-grid">
             <div class="field">
@@ -153,18 +158,20 @@
             </div>
         </div>
 
-        <label>Tipo de operación</label>
-        <div class="btn-group">
-            <button class="btn active">Venta</button>
-            <button class="btn">Renta</button>
-            <button class="btn">Preventa</button>
+        <div class="field">
+            <label>Tipo de operación</label>
+            <div class="btn-group">
+                <button class="btn active">Venta</button>
+                <button class="btn">Renta</button>
+                <button class="btn">Preventa</button>
+            </div>
         </div>
 
         <a href="https://wa.me/5559408467?text=propprops%20wibi" class="btn-whatsapp">
             🚀 Enviar informes: propprops wibi
         </a>
 
-        <p style="text-align: center; margin-top: 30px; font-weight: bold; color: #333;">
+        <p style="text-align: right; margin-top: 50px; font-weight: bold; font-size: 14px; color: #111;">
             GUSTAVO: SENIOR FULL STACK 👑
         </p>
     </div>
